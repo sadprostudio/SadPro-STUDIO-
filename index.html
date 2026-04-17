@@ -1,50 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choose Language</title>
 
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial;
-      background: #111;
+      background: #0f0f0f;
       color: white;
     }
 
-    .box {
+    .container {
       text-align: center;
     }
 
+    h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     a {
-      display: inline-block;
-      margin: 20px;
-      padding: 15px 30px;
-      background: white;
-      color: black;
+      width: 180px;
+      padding: 20px;
+      border-radius: 14px;
       text-decoration: none;
-      font-weight: bold;
-      border-radius: 10px;
+      color: white;
+      background: #1a1a1a;
+      border: 2px solid #2a2a2a;
       transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 🔥 GLOW EFFECT */
+    a::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(0,188,212,0.5), transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: 0.4s ease;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    a:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     a:hover {
-      background: #00bcd4;
-      color: white;
+      transform: translateY(-6px);
+      border-color: #00bcd4;
+    }
+
+    .flag {
+      width: 60px;
+      height: auto;
+      border-radius: 6px;
+      z-index: 1;
+      transition: 0.3s;
+    }
+
+    a:hover .flag {
+      filter: drop-shadow(0 0 10px rgba(0,188,212,0.8));
+      transform: scale(1.05);
+    }
+
+    .lang {
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .container {
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .buttons {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="box">
-    <h1>Choose Language / Scegli lingua</h1>
-    <a href="it/home.html">Italiano</a>
-    <a href="en/home.html">English</a>
+  <div class="container">
+    <h1>Welcome</h1>
+    <p>Scegli la lingua / Choose language</p>
+
+    <div class="buttons">
+
+      <a href="it/home.html">
+        <img class="flag" src="https://flagcdn.com/w80/it.png" alt="Italy Flag">
+        <div class="lang">Italiano</div>
+      </a>
+
+      <a href="en/home.html">
+        <img class="flag" src="https://flagcdn.com/w80/gb.png" alt="UK Flag">
+        <div class="lang">English</div>
+      </a>
+
+    </div>
   </div>
 
 </body>
