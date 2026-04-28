@@ -174,7 +174,7 @@ const lang = (navigator.language || navigator.userLanguage).toLowerCase();
 const isItalian = lang.startsWith("it");
 
 const text = isItalian ? t.it : t.en;
-  
+
 // applica testi
 document.title = text.title;
 document.getElementById("h1").innerText = text.h1;
