@@ -13,12 +13,22 @@
       visibility: hidden; /* evita flicker */
     }
 
-    header {
-      background: #345A46;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
+header {
+  background: #345A46;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  position: relative; /* necessario per sovrapporre il logo */
+}
+
+.logo {
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  width: 70px;   /* regola dimensione */
+  height: auto;
+  z-index: 10;
+}
 
     header h1 {
       margin: 0;
@@ -86,6 +96,7 @@
 <body>
 
 <header>
+  <img src="images/logo.png" alt="Logo" class="logo">
   <h1 id="h1"></h1>
   <p id="subtitle"></p>
 </header>
