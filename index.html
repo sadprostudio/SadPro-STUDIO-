@@ -175,9 +175,6 @@ const isItalian = lang.startsWith("it");
 
 const text = isItalian ? t.it : t.en;
   
-console.log("LANG:", navigator.language);
-alert("LANG: " + navigator.language);
-  
 // applica testi
 document.title = text.title;
 document.getElementById("h1").innerText = text.h1;
