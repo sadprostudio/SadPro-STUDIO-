@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="title">Biglietti personalizzati</title>
+  <title></title>
 
   <style>
     body {
@@ -11,6 +11,7 @@
       margin: 0;
       background: #fafae2;
       color: #333;
+      visibility: hidden; /* evita flicker */
     }
 
     header {
@@ -31,9 +32,14 @@
       opacity: 0.8;
     }
 
-    section { padding: 20px; }
+    section {
+      padding: 20px;
+    }
 
-    h2 { margin-bottom: 10px; font-size: 18px; }
+    h2 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
 
     .grid {
       display: grid;
@@ -87,17 +93,48 @@
 
 <section>
   <h2 id="c1"></h2>
-  <div class="grid"></div>
+  <div class="grid">
+    <div class="card">
+      <img src="images/b01.png">
+      <div class="code">B01</div>
+    </div>
+    <div class="card">
+      <img src="images/b02.png">
+      <div class="code">B02</div>
+    </div>
+    <div class="card">
+      <img src="images/b03.png">
+      <div class="code">B03</div>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2 id="c2"></h2>
-  <div class="grid"></div>
+  <div class="grid">
+    <div class="card">
+      <img src="images/c01.png">
+      <div class="code">C01</div>
+    </div>
+    <div class="card">
+      <img src="images/c02.png">
+      <div class="code">C02</div>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2 id="c3"></h2>
-  <div class="grid"></div>
+  <div class="grid">
+    <div class="card">
+      <img src="images/p01.png">
+      <div class="code">P01</div>
+    </div>
+    <div class="card">
+      <img src="images/e01.png">
+      <div class="code">E01</div>
+    </div>
+  </div>
 </section>
 
 <section>
@@ -109,9 +146,6 @@
 </div>
 
 <script>
-const lang = (navigator.language || navigator.userLanguage).toLowerCase();
-const isItalian = lang.startsWith("it");
-
 const t = {
   it: {
     title: "Biglietti personalizzati",
@@ -120,7 +154,7 @@ const t = {
     c1: "🎉 Compleanni",
     c2: "⛪ Comunioni",
     c3: "✨ Altre occasioni",
-    c4: "Non hai trovato quello che cerchi? Scrivimi come lo vorresti e ti preparo qualcosa su misura!",
+    c4: "Non hai trovato quello che cerchi? Scrivimi e ti preparo qualcosa su misura!",
     cta: "Scrivimi su WhatsApp!"
   },
   en: {
@@ -130,13 +164,18 @@ const t = {
     c1: "🎉 Birthdays",
     c2: "⛪ Communions",
     c3: "✨ Other occasions",
-    c4: "Didn't find what you're looking for? Message me and I'll create something custom!",
+    c4: "Didn't find what you're looking for? Message me for a custom design!",
     cta: "Message me on WhatsApp!"
   }
 };
 
+// lingua browser
+const lang = (navigator.language || navigator.userLanguage).toLowerCase();
+const isItalian = lang.startsWith("it");
+
 const text = isItalian ? t.it : t.en;
 
+// applica testi
 document.title = text.title;
 document.getElementById("h1").innerText = text.h1;
 document.getElementById("subtitle").innerText = text.subtitle;
@@ -145,6 +184,9 @@ document.getElementById("c2").innerText = text.c2;
 document.getElementById("c3").innerText = text.c3;
 document.getElementById("c4").innerText = text.c4;
 document.getElementById("cta").innerText = text.cta;
+
+// mostra pagina solo dopo traduzione
+document.body.style.visibility = "visible";
 </script>
 
 </body>
