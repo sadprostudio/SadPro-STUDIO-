@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+<title>SadPro Studio</title>
 
 <style>
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   margin: 0;
   background: #fafae2;
-  color: #333;
   visibility: hidden;
+  color: #333;
 }
 
-/* HEADER */
 header {
   background: #345A46;
   color: white;
@@ -29,8 +28,6 @@ header {
   top: 1px;
   right: 1px;
   width: 180px;
-  max-width: 40%;
-  height: auto;
 }
 
 header h1 {
@@ -47,13 +44,9 @@ header p {
   bottom: 15px;
   margin: 0;
   font-size: 14px;
-  opacity: 0.8;
 }
 
-/* GRID */
 section { padding: 20px; }
-
-h2 { font-size: 18px; }
 
 .grid {
   display: grid;
@@ -61,65 +54,37 @@ h2 { font-size: 18px; }
   gap: 15px;
 }
 
-/* CARD */
 .card {
   background: #8ca27a;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   text-align: center;
-  padding-bottom: 12px;
+  padding-bottom: 10px;
 }
 
 .card img {
   width: 100%;
   cursor: pointer;
-  transition: transform 0.25s ease;
+  transition: 0.25s;
 }
 
 .card img:hover {
-  transform: scale(1.15);
+  transform: scale(1.12);
 }
 
-/* TEXT */
 .desc {
   font-size: 12px;
-  margin: 6px 8px;
+  margin: 6px;
   opacity: 0.9;
 }
 
 .customize {
   font-size: 13px;
+  font-weight: bold;
   color: #0b4f2c;
-  font-weight: bold;
   cursor: pointer;
-  margin-top: 6px;
-  display: inline-block;
 }
 
-/* CTA */
-.cta {
-  text-align: center;
-  padding: 20px;
-}
-
-.cta a {
-  display: inline-block;
-  background: #25D366;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  width: 220px;
-  margin-bottom: 10px;
-}
-
-.cta a:last-child {
-  background: #3b82f6;
-}
-
-/* LIGHTBOX */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -127,30 +92,37 @@ h2 { font-size: 18px; }
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
 }
 
 .lightbox img {
   max-width: 95%;
   max-height: 95%;
-  transform-origin: center;
 }
 
-/* FOOTER DISCLAIMER */
+.cta {
+  text-align: center;
+  padding: 20px;
+}
+
+.cta a {
+  display: block;
+  width: 220px;
+  margin: 10px auto;
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+}
+
+.whatsapp { background: #25D366; }
+.email { background: #3b82f6; }
+
 .footer {
   background: #345A46;
   color: white;
   text-align: center;
-  padding: 15px 20px;
+  padding: 15px;
   font-size: 12px;
-  opacity: 0.9;
-}
-
-/* MOBILE */
-@media (max-width: 500px) {
-  header { height: 100px; }
-  header h1 { font-size: 18px; bottom: 35px; }
-  header p { font-size: 12px; }
 }
 </style>
 </head>
@@ -164,175 +136,98 @@ h2 { font-size: 18px; }
 </header>
 
 <section>
-<h2 id="c1"></h2>
-<div class="grid">
-
-  <div class="card">
-    <img src="images/b01.png" onclick="openLightbox(this)">
-    <div class="desc"></div>
-    <div class="customize" onclick="wa('B01','images/b01.png')"></div>
-  </div>
-
-  <div class="card">
-    <img src="images/b02.png" onclick="openLightbox(this)">
-    <div class="desc"></div>
-    <div class="customize" onclick="wa('B02','images/b02.png')"></div>
-  </div>
-
-  <div class="card">
-    <img src="images/b03.png" onclick="openLightbox(this)">
-    <div class="desc"></div>
-    <div class="customize" onclick="wa('B03','images/b03.png')"></div>
-  </div>
-
-</div>
-</section>
-
-<section>
-<h2 id="c2"></h2>
-<div class="grid">
-
-  <div class="card">
-    <img src="images/c01.png" onclick="openLightbox(this)">
-    <div class="desc"></div>
-    <div class="customize" onclick="wa('C01','images/c01.png')"></div>
-  </div>
-
-  <div class="card">
-    <img src="images/c02.png" onclick="openLightbox(this)">
-    <div class="desc"></div>
-    <div class="customize" onclick="wa('C02','images/c02.png')"></div>
-  </div>
-
-</div>
-</section>
-
-<section>
-<h2 id="c3"></h2>
-<div class="grid">
-
-  <div class="card">
-    <img src="images/p01.png" onclick="openLightbox(this)">
-    <div class="desc"></div>
-    <div class="customize" onclick="wa('P01','images/p01.png')"></div>
-  </div>
-
-  <div class="card">
-    <img src="images/e01.png" onclick="openLightbox(this)">
-    <div class="desc"></div>
-    <div class="customize" onclick="wa('E01','images/e01.png')"></div>
-  </div>
-
-</div>
-</section>
-
-<section>
-<h2 id="c4"></h2>
+  <h2 id="c1"></h2>
+  <div class="grid" id="grid"></div>
 </section>
 
 <div class="cta">
-  <a id="cta" href="https://wa.me/39TUONUMEROQUI"></a>
-  <a id="ctaMail" href="mailto:tuaemail@esempio.com"></a>
+  <a class="whatsapp" id="cta"></a>
+  <a class="email" id="ctaMail"></a>
 </div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <img id="lightbox-img">
+  <img id="lightboxImg">
 </div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <p id="footerText"></p>
-</footer>
+<footer class="footer" id="footer"></footer>
+
+<script src="products.js"></script>
 
 <script>
-
-/* TEXT */
 const t = {
   it: {
-    title: "SadPro Studio - Biglietti personalizzati di alta qualità per ogni occasione!",
     h1: "Biglietti personalizzati in giornata",
-    subtitle: "Scegli il modello che ti piace e te lo personalizzerò in poche ore",
-    c1: "Compleanni",
-    c2: "Sacramenti",
-    c3: "Altre occasioni",
-    c4: "Non hai trovato quello che cerchi? Scrivimi!",
-    desc: "Modello personalizzabile con colori, nome e testo.",
-    customize: "Personalizza questo",
-    cta: "Scrivimi su WhatsApp!",
-    ctaMail: "Scrivimi via Email!",
-    waText: "Ciao! Vorrei questo modello (",
-    waEnd: ") personalizzato. Link: ",
-    footerText: "Tutte le opere presenti su questo sito sono realizzate manualmente e non generate tramite intelligenza artificiale."
+    subtitle: "Scegli il modello e lo personalizzo per te",
+    cta: "Scrivimi su WhatsApp",
+    ctaMail: "Scrivimi via Email",
+    footer: "Tutte le opere sono realizzate manualmente, non generate con intelligenza artificiale.",
+    customize: "Personalizza questo"
   },
   en: {
-    title: "SadPro Studio - Custom cards for any occasion!",
     h1: "Custom cards in 24h",
-    subtitle: "Pick a design and I’ll customize it for you",
-    c1: "Birthdays",
-    c2: "Religious",
-    c3: "Other occasions",
-    c4: "Contact me for custom work",
-    desc: "Fully customizable template with text and colors.",
-    customize: "Customize this",
-    cta: "Message me on WhatsApp!",
-    ctaMail: "Send me an Email!",
-    waText: "Hi! I want this design (",
-    waEnd: ") customized. Link: ",
-    footerText: "All works displayed on this website are handmade and not generated using artificial intelligence."
+    subtitle: "Pick a design and I’ll customize it",
+    cta: "Message me on WhatsApp",
+    ctaMail: "Send me an Email",
+    footer: "All works are handmade, not generated by AI.",
+    customize: "Customize this"
   }
 };
 
-const lang = (navigator.language || "").toLowerCase();
-const isIT = lang.startsWith("it");
+const isIT = (navigator.language || "").startsWith("it");
 const text = isIT ? t.it : t.en;
 
-/* APPLY */
-document.title = text.title;
+/* TEXT */
 h1.innerText = text.h1;
 subtitle.innerText = text.subtitle;
-c1.innerText = text.c1;
-c2.innerText = text.c2;
-c3.innerText = text.c3;
-c4.innerText = text.c4;
 cta.innerText = text.cta;
 ctaMail.innerText = text.ctaMail;
-footerText.innerText = text.footerText;
-
-document.querySelectorAll(".desc").forEach(el => el.innerText = text.desc);
-document.querySelectorAll(".customize").forEach(el => el.innerText = text.customize);
+footer.innerText = text.footer;
 
 /* WHATSAPP */
-const WA_NUMBER = "39TUONUMEROQUI";
+const WA = "39TUONUMEROQUI";
 
-function wa(code, img){
-  const imageURL = window.location.origin + "/" + img;
+function wa(id, img){
+  const url = location.origin + "/" + img;
 
   const msg =
-`${text.waText}${code}${text.waEnd}
-${imageURL}`;
+`Ciao! Vorrei il modello ${id}
+Link: ${url}
+Vorrei personalizzarlo.`;
 
   window.open(
-    `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,
+    `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,
     "_blank"
   );
 }
 
+/* RENDER */
+const grid = document.getElementById("grid");
+
+products.forEach(p => {
+  grid.innerHTML += `
+    <div class="card">
+      <img src="${p.img}" onclick="openLightbox(this)">
+      <div class="desc">${isIT ? p.desc_it : p.desc_en}</div>
+      <div class="customize" onclick="wa('${p.id}','${p.img}')">
+        ${text.customize}
+      </div>
+    </div>
+  `;
+});
+
 /* LIGHTBOX */
 const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+const lightboxImg = document.getElementById("lightboxImg");
 
 function openLightbox(img){
   lightbox.style.display = "flex";
   lightboxImg.src = img.src;
 }
 
-lightbox.addEventListener("click", () => {
-  lightbox.style.display = "none";
-});
+lightbox.onclick = () => lightbox.style.display = "none";
 
+/* SHOW */
 document.body.style.visibility = "visible";
-
 </script>
 
 </body>
