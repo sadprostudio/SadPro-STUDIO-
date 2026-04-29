@@ -50,13 +50,9 @@ header p {
 }
 
 /* GRID */
-section {
-  padding: 20px;
-}
+section { padding: 20px; }
 
-h2 {
-  font-size: 18px;
-}
+h2 { font-size: 18px; }
 
 .grid {
   display: grid;
@@ -80,18 +76,18 @@ h2 {
   transition: transform 0.25s ease;
 }
 
+/* 🔥 HOVER PIÙ AGGRESSIVO */
 .card img:hover {
-  transform: scale(1.05);
+  transform: scale(1.12);
 }
 
-/* TESTO */
+/* TEXT */
 .desc {
   font-size: 12px;
   margin: 6px 8px;
   opacity: 0.9;
 }
 
-/* CTA PERSONALIZZA */
 .customize {
   font-size: 13px;
   color: #0b4f2c;
@@ -101,7 +97,7 @@ h2 {
   display: inline-block;
 }
 
-/* BOTTONI FINALI */
+/* CTA */
 .cta {
   text-align: center;
   padding: 20px;
@@ -142,7 +138,7 @@ h2 {
   cursor: zoom-in;
 }
 
-/* 📱 MOBILE */
+/* MOBILE */
 @media (max-width: 500px) {
   header { height: 100px; }
   header h1 { font-size: 18px; bottom: 35px; }
@@ -165,19 +161,19 @@ h2 {
 
   <div class="card">
     <img src="images/b01.png" onclick="openLightbox(this)">
-    <div class="desc" id="desc"></div>
+    <div class="desc" id="d1"></div>
     <div class="customize" onclick="wa('B01')"></div>
   </div>
 
   <div class="card">
     <img src="images/b02.png" onclick="openLightbox(this)">
-    <div class="desc" id="desc2"></div>
+    <div class="desc" id="d2"></div>
     <div class="customize" onclick="wa('B02')"></div>
   </div>
 
   <div class="card">
     <img src="images/b03.png" onclick="openLightbox(this)">
-    <div class="desc" id="desc3"></div>
+    <div class="desc" id="d3"></div>
     <div class="customize" onclick="wa('B03')"></div>
   </div>
 
@@ -190,13 +186,13 @@ h2 {
 
   <div class="card">
     <img src="images/c01.png" onclick="openLightbox(this)">
-    <div class="desc" id="desc4"></div>
+    <div class="desc" id="d4"></div>
     <div class="customize" onclick="wa('C01')"></div>
   </div>
 
   <div class="card">
     <img src="images/c02.png" onclick="openLightbox(this)">
-    <div class="desc" id="desc5"></div>
+    <div class="desc" id="d5"></div>
     <div class="customize" onclick="wa('C02')"></div>
   </div>
 
@@ -209,13 +205,13 @@ h2 {
 
   <div class="card">
     <img src="images/p01.png" onclick="openLightbox(this)">
-    <div class="desc" id="desc6"></div>
+    <div class="desc" id="d6"></div>
     <div class="customize" onclick="wa('P01')"></div>
   </div>
 
   <div class="card">
     <img src="images/e01.png" onclick="openLightbox(this)">
-    <div class="desc" id="desc7"></div>
+    <div class="desc" id="d7"></div>
     <div class="customize" onclick="wa('E01')"></div>
   </div>
 
@@ -238,37 +234,37 @@ h2 {
 
 <script>
 
-/* 🌍 TEXT */
+/* 🌍 TESTI ORIGINALI RIPRISTINATI */
 const t = {
   it: {
-    title: "SadPro Studio - Biglietti personalizzati",
+    title: "SadPro Studio - Biglietti personalizzati di alta qualità per ogni occasione!",
     h1: "Biglietti personalizzati in giornata",
-    subtitle: "Scegli un modello e lo personalizzo per te",
+    subtitle: "Scegli il modello che ti piace e te lo personalizzerò in poche ore",
     c1: "Compleanni",
     c2: "Sacramenti",
     c3: "Altre occasioni",
-    c4: "Scrivimi per un progetto su misura",
-    desc: "Modello elegante personalizzabile con nome, colori e testo.",
+    c4: "Non hai trovato quello che cerchi? Scrivimi e te ne preparo uno su misura!",
+    desc: "Modello personalizzabile con colori, nomi e testo.",
     customize: "Personalizza questo",
     cta: "Scrivimi su WhatsApp!",
     ctaMail: "Scrivimi via Email!",
     waText: "Ciao! Vorrei questo modello (",
-    waEnd: ") personalizzato cambiando colori e testo."
+    waEnd: ") personalizzato con modifiche su colori e testo."
   },
   en: {
-    title: "SadPro Studio - Custom cards",
+    title: "SadPro Studio - Custom quality cards for any occasion!",
     h1: "Custom cards in 24h",
-    subtitle: "Pick a design and I’ll customize it for you",
+    subtitle: "Pick a design you like and I’ll customize it for you",
     c1: "Birthdays",
-    c2: "Religious",
+    c2: "Religious Functions",
     c3: "Other occasions",
-    c4: "Contact me for custom work",
-    desc: "Elegant template fully customizable with names, colors and text.",
+    c4: "Haven’t found what you’re looking for? Message me!",
+    desc: "Fully customizable design with names, colors and text.",
     customize: "Customize this",
     cta: "Message me on WhatsApp!",
     ctaMail: "Send me an Email!",
     waText: "Hi! I would like this design (",
-    waEnd: ") customized with colors and text."
+    waEnd: ") customized with changes to colors and text."
   }
 };
 
@@ -287,7 +283,7 @@ c4.innerText = text.c4;
 cta.innerText = text.cta;
 ctaMail.innerText = text.ctaMail;
 
-/* DESCRIPTIONS */
+/* DESCRIZIONI */
 document.querySelectorAll(".desc").forEach(el => {
   el.innerText = text.desc;
 });
@@ -319,11 +315,11 @@ lightbox.addEventListener("click", () => {
   lightbox.style.display = "none";
 });
 
-/* zoom con scroll */
+/* zoom scroll */
 lightboxImg.addEventListener("wheel", (e) => {
   e.preventDefault();
-  zoom += (e.deltaY < 0) ? 0.1 : -0.1;
-  zoom = Math.min(Math.max(1, zoom), 3);
+  zoom += (e.deltaY < 0) ? 0.15 : -0.15;
+  zoom = Math.min(Math.max(1, zoom), 4);
   lightboxImg.style.transform = `scale(${zoom})`;
 });
 
