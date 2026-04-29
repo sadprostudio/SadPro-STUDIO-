@@ -1,293 +1,334 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
 
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #fafae2;
-    color: #333;
-    visibility: hidden;
-  }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #fafae2;
+  color: #333;
+  visibility: hidden;
+}
 
-  header {
-    background: #345A46;
-    color: white;
-    position: relative;
-    height: 100px;
-    padding: 15px;
-    overflow: hidden;
-  }
+/* HEADER */
+header {
+  background: #345A46;
+  color: white;
+  position: relative;
+  height: 100px;
+  padding: 15px;
+  overflow: hidden;
+}
 
-  .logo {
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    width: 200px;
-    max-width: 40%;
-    height: auto;
-  }
+.logo {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 180px;
+  max-width: 40%;
+}
 
-  header h1 {
-    position: absolute;
-    left: 20px;
-    bottom: 45px;
-    margin: 0;
-    font-size: 22px;
-    text-align: left;
-  }
+header h1 {
+  position: absolute;
+  left: 20px;
+  bottom: 45px;
+  margin: 0;
+  font-size: 22px;
+}
 
-  header p {
-    position: absolute;
-    left: 20px;
-    bottom: 15px;
-    margin: 0;
-    font-size: 14px;
-    opacity: 0.8;
-    text-align: left;
-  }
+header p {
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
 
-  section {
-    padding: 20px;
-  }
+/* GRID */
+section {
+  padding: 20px;
+}
 
-  h2 {
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
+h2 {
+  font-size: 18px;
+}
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+}
 
-  .card {
-    background: #8ca27a;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    text-align: center;
-    padding-bottom: 10px;
-  }
+/* CARD */
+.card {
+  background: #8ca27a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  padding-bottom: 12px;
+}
 
-  .card img {
-    width: 100%;
-    display: block;
-    cursor: pointer;
-  }
+.card img {
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
 
-  .code {
-    font-size: 13px;
-    margin-top: 8px;
-    font-weight: bold;
-  }
+.card img:hover {
+  transform: scale(1.05);
+}
 
-  .cta {
-    text-align: center;
-    padding: 20px;
-  }
+/* TESTO */
+.desc {
+  font-size: 12px;
+  margin: 6px 8px;
+  opacity: 0.9;
+}
 
-  .cta a {
-    display: inline-block;
-    background: #25D366;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    width: 220px;
-  }
+/* CTA PERSONALIZZA */
+.customize {
+  font-size: 13px;
+  color: #0b4f2c;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 6px;
+  display: inline-block;
+}
 
-  .cta a:last-child {
-    background: #3b82f6;
-  }
+/* BOTTONI FINALI */
+.cta {
+  text-align: center;
+  padding: 20px;
+}
 
-  /* 📱 MOBILE */
-  @media (max-width: 500px) {
-    header {
-      height: 100px;
-      padding: 10px;
-    }
+.cta a {
+  display: inline-block;
+  background: #25D366;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  width: 220px;
+  margin-bottom: 10px;
+}
 
-    .logo {
-      width: 150px;
-      max-width: 45%;
-      top: 1px;
-      right: 1px;
-    }
+.cta a:last-child {
+  background: #3b82f6;
+}
 
-    header h1 {
-      font-size: 18px;
-      bottom: 35px;
-      left: 15px;
-    }
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
-    header p {
-      font-size: 12px;
-      bottom: 10px;
-      left: 15px;
-    }
-  }
+.lightbox img {
+  max-width: 95%;
+  max-height: 95%;
+  transform-origin: center;
+  transition: transform 0.2s ease;
+  cursor: zoom-in;
+}
 
-  /* 🔲 LIGHTBOX */
-  .lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-  }
-
-  .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    cursor: pointer;
-  }
+/* 📱 MOBILE */
+@media (max-width: 500px) {
+  header { height: 100px; }
+  header h1 { font-size: 18px; bottom: 35px; }
+  header p { font-size: 12px; }
+}
 </style>
-
 </head>
 
 <body>
 
 <header>
-  <img src="images/logo_green.png" alt="Logo" class="logo">
+  <img src="images/logo_green.png" class="logo">
   <h1 id="h1"></h1>
   <p id="subtitle"></p>
 </header>
 
 <section>
-  <h2 id="c1"></h2>
-  <div class="grid">
-    <div class="card">
-      <img src="images/b01.png">
-      <div class="code">B01</div>
-    </div>
-    <div class="card">
-      <img src="images/b02.png">
-      <div class="code">B02</div>
-    </div>
-    <div class="card">
-      <img src="images/b03.png">
-      <div class="code">B03</div>
-    </div>
+<h2 id="c1"></h2>
+<div class="grid">
+
+  <div class="card">
+    <img src="images/b01.png" onclick="openLightbox(this)">
+    <div class="desc" id="desc"></div>
+    <div class="customize" onclick="wa('B01')"></div>
   </div>
+
+  <div class="card">
+    <img src="images/b02.png" onclick="openLightbox(this)">
+    <div class="desc" id="desc2"></div>
+    <div class="customize" onclick="wa('B02')"></div>
+  </div>
+
+  <div class="card">
+    <img src="images/b03.png" onclick="openLightbox(this)">
+    <div class="desc" id="desc3"></div>
+    <div class="customize" onclick="wa('B03')"></div>
+  </div>
+
+</div>
 </section>
 
 <section>
-  <h2 id="c2"></h2>
-  <div class="grid">
-    <div class="card">
-      <img src="images/c01.png">
-      <div class="code">C01</div>
-    </div>
-    <div class="card">
-      <img src="images/c02.png">
-      <div class="code">C02</div>
-    </div>
+<h2 id="c2"></h2>
+<div class="grid">
+
+  <div class="card">
+    <img src="images/c01.png" onclick="openLightbox(this)">
+    <div class="desc" id="desc4"></div>
+    <div class="customize" onclick="wa('C01')"></div>
   </div>
+
+  <div class="card">
+    <img src="images/c02.png" onclick="openLightbox(this)">
+    <div class="desc" id="desc5"></div>
+    <div class="customize" onclick="wa('C02')"></div>
+  </div>
+
+</div>
 </section>
 
 <section>
-  <h2 id="c3"></h2>
-  <div class="grid">
-    <div class="card">
-      <img src="images/p01.png">
-      <div class="code">P01</div>
-    </div>
-    <div class="card">
-      <img src="images/e01.png">
-      <div class="code">E01</div>
-    </div>
+<h2 id="c3"></h2>
+<div class="grid">
+
+  <div class="card">
+    <img src="images/p01.png" onclick="openLightbox(this)">
+    <div class="desc" id="desc6"></div>
+    <div class="customize" onclick="wa('P01')"></div>
   </div>
+
+  <div class="card">
+    <img src="images/e01.png" onclick="openLightbox(this)">
+    <div class="desc" id="desc7"></div>
+    <div class="customize" onclick="wa('E01')"></div>
+  </div>
+
+</div>
 </section>
 
 <section>
-  <h2 id="c4"></h2>
+<h2 id="c4"></h2>
 </section>
 
 <div class="cta">
-  <a href="https://wa.me/39TUONUMEROQUI" target="_blank" id="cta"></a>
-  <br><br>
-  <a href="mailto:tuaemail@esempio.com" id="ctaMail"></a>
+  <a id="cta" href="https://wa.me/39TUONUMEROQUI"></a>
+  <a id="ctaMail" href="mailto:tuaemail@esempio.com"></a>
 </div>
 
-<!-- 🔲 LIGHTBOX -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <img id="lightbox-img" src="" alt="">
+  <img id="lightbox-img">
 </div>
 
 <script>
+
+/* 🌍 TEXT */
 const t = {
   it: {
-    title: "SadPro Studio - Biglietti personalizzati di alta qualità per ogni occasione!",
+    title: "SadPro Studio - Biglietti personalizzati",
     h1: "Biglietti personalizzati in giornata",
-    subtitle: "Scegli il modello che ti piace e te lo personalizzerò in poche ore",
+    subtitle: "Scegli un modello e lo personalizzo per te",
     c1: "Compleanni",
     c2: "Sacramenti",
     c3: "Altre occasioni",
-    c4: "Non hai trovato quello che cerchi? Scrivimi e te ne preparo uno su misura!",
+    c4: "Scrivimi per un progetto su misura",
+    desc: "Modello elegante personalizzabile con nome, colori e testo.",
+    customize: "Personalizza questo",
     cta: "Scrivimi su WhatsApp!",
-    ctaMail: "Scrivimi via Email!"
+    ctaMail: "Scrivimi via Email!",
+    waText: "Ciao! Vorrei questo modello (",
+    waEnd: ") personalizzato cambiando colori e testo."
   },
   en: {
-    title: "SadPro Studio - Custom quality cards for any occasion!",
+    title: "SadPro Studio - Custom cards",
     h1: "Custom cards in 24h",
-    subtitle: "Pick a design you like and I'll customize it for you in just a few hours",
+    subtitle: "Pick a design and I’ll customize it for you",
     c1: "Birthdays",
-    c2: "Religious Functions",
+    c2: "Religious",
     c3: "Other occasions",
-    c4: "Haven't found what you're looking for? Message me and I'll make one from scratch according to your needs!",
+    c4: "Contact me for custom work",
+    desc: "Elegant template fully customizable with names, colors and text.",
+    customize: "Customize this",
     cta: "Message me on WhatsApp!",
-    ctaMail: "Send me an Email!"
+    ctaMail: "Send me an Email!",
+    waText: "Hi! I would like this design (",
+    waEnd: ") customized with colors and text."
   }
 };
 
-// lingua
-const lang = (navigator.language || navigator.userLanguage).toLowerCase();
-const isItalian = lang.startsWith("it");
-const text = isItalian ? t.it : t.en;
+const lang = (navigator.language || "").toLowerCase();
+const isIT = lang.startsWith("it");
+const text = isIT ? t.it : t.en;
 
-// testi
+/* APPLY TEXT */
 document.title = text.title;
-document.getElementById("h1").innerText = text.h1;
-document.getElementById("subtitle").innerText = text.subtitle;
-document.getElementById("c1").innerText = text.c1;
-document.getElementById("c2").innerText = text.c2;
-document.getElementById("c3").innerText = text.c3;
-document.getElementById("c4").innerText = text.c4;
-document.getElementById("cta").innerText = text.cta;
-document.getElementById("ctaMail").innerText = text.ctaMail;
+h1.innerText = text.h1;
+subtitle.innerText = text.subtitle;
+c1.innerText = text.c1;
+c2.innerText = text.c2;
+c3.innerText = text.c3;
+c4.innerText = text.c4;
+cta.innerText = text.cta;
+ctaMail.innerText = text.ctaMail;
 
-// LIGHTBOX
+/* DESCRIPTIONS */
+document.querySelectorAll(".desc").forEach(el => {
+  el.innerText = text.desc;
+});
+
+document.querySelectorAll(".customize").forEach(el => {
+  el.innerText = text.customize;
+});
+
+/* WHATSAPP */
+function wa(code){
+  const msg = text.waText + code + text.waEnd;
+  window.open("https://wa.me/39TUONUMEROQUI?text=" + encodeURIComponent(msg), "_blank");
+}
+
+/* LIGHTBOX + ZOOM */
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 
-document.querySelectorAll(".card img").forEach(img => {
-  img.addEventListener("click", () => {
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
-  });
-});
+let zoom = 1;
+
+function openLightbox(img){
+  lightbox.style.display = "flex";
+  lightboxImg.src = img.src;
+  zoom = 1;
+  lightboxImg.style.transform = "scale(1)";
+}
 
 lightbox.addEventListener("click", () => {
   lightbox.style.display = "none";
-  lightboxImg.src = "";
 });
 
-// mostra pagina
+/* zoom con scroll */
+lightboxImg.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  zoom += (e.deltaY < 0) ? 0.1 : -0.1;
+  zoom = Math.min(Math.max(1, zoom), 3);
+  lightboxImg.style.transform = `scale(${zoom})`;
+});
+
 document.body.style.visibility = "visible";
+
 </script>
 
 </body>
