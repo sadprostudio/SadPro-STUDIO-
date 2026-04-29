@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  
+
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -78,6 +78,7 @@
   .card img {
     width: 100%;
     display: block;
+    cursor: pointer;
   }
 
   .code {
@@ -102,7 +103,6 @@
     width: 220px;
   }
 
-  /* bottone email */
   .cta a:last-child {
     background: #3b82f6;
   }
@@ -133,8 +133,30 @@
       left: 15px;
     }
   }
+
+  /* 🔲 LIGHTBOX */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    cursor: pointer;
+  }
 </style>
-  
+
 </head>
 
 <body>
@@ -201,6 +223,11 @@
   <a href="mailto:tuaemail@esempio.com" id="ctaMail"></a>
 </div>
 
+<!-- 🔲 LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <script>
 const t = {
   it: {
@@ -227,13 +254,12 @@ const t = {
   }
 };
 
-// lingua browser
+// lingua
 const lang = (navigator.language || navigator.userLanguage).toLowerCase();
 const isItalian = lang.startsWith("it");
-
 const text = isItalian ? t.it : t.en;
 
-// applica testi
+// testi
 document.title = text.title;
 document.getElementById("h1").innerText = text.h1;
 document.getElementById("subtitle").innerText = text.subtitle;
@@ -244,7 +270,23 @@ document.getElementById("c4").innerText = text.c4;
 document.getElementById("cta").innerText = text.cta;
 document.getElementById("ctaMail").innerText = text.ctaMail;
 
-// mostra pagina solo dopo traduzione
+// LIGHTBOX
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".card img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+lightbox.addEventListener("click", () => {
+  lightbox.style.display = "none";
+  lightboxImg.src = "";
+});
+
+// mostra pagina
 document.body.style.visibility = "visible";
 </script>
 
