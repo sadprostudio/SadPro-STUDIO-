@@ -10,10 +10,11 @@ body {
   font-family: Arial;
   margin: 0;
   background: #fafae2;
-  visibility: hidden;
   color: #333;
+  visibility: hidden;
 }
 
+/* HEADER */
 header {
   background: #345A46;
   color: white;
@@ -46,14 +47,23 @@ header p {
   font-size: 14px;
 }
 
-section { padding: 20px; }
+/* SECTIONS */
+section {
+  padding: 20px;
+}
 
+h2 {
+  margin-bottom: 10px;
+}
+
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 15px;
 }
 
+/* CARD */
 .card {
   background: #8ca27a;
   border-radius: 10px;
@@ -72,10 +82,10 @@ section { padding: 20px; }
   transform: scale(1.12);
 }
 
+/* TEXT */
 .desc {
   font-size: 12px;
   margin: 6px;
-  opacity: 0.9;
 }
 
 .customize {
@@ -85,20 +95,7 @@ section { padding: 20px; }
   cursor: pointer;
 }
 
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.lightbox img {
-  max-width: 95%;
-  max-height: 95%;
-}
-
+/* CTA */
 .cta {
   text-align: center;
   padding: 20px;
@@ -117,6 +114,22 @@ section { padding: 20px; }
 .whatsapp { background: #25D366; }
 .email { background: #3b82f6; }
 
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox img {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+/* FOOTER */
 .footer {
   background: #345A46;
   color: white;
@@ -135,25 +148,36 @@ section { padding: 20px; }
   <p id="subtitle"></p>
 </header>
 
+<!-- CATEGORIA COMPLEANNI -->
 <section>
-  <h2 id="c1"></h2>
-  <div class="grid" id="grid"></div>
+  <h2>🎉 Compleanni</h2>
+  <div class="grid" id="birthdays"></div>
 </section>
 
+<!-- CATEGORIA SACRAMENTI -->
+<section>
+  <h2>⛪ Sacramenti</h2>
+  <div class="grid" id="religious"></div>
+</section>
+
+<!-- CTA -->
 <div class="cta">
   <a class="whatsapp" id="cta"></a>
   <a class="email" id="ctaMail"></a>
 </div>
 
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <img id="lightboxImg">
 </div>
 
+<!-- FOOTER -->
 <footer class="footer" id="footer"></footer>
 
 <script src="products.js"></script>
 
 <script>
+
 const t = {
   it: {
     h1: "Biglietti personalizzati in giornata",
@@ -200,20 +224,24 @@ Vorrei personalizzarlo.`;
   );
 }
 
-/* RENDER */
-const grid = document.getElementById("grid");
+/* RENDER CATEGORY */
+function renderCategory(containerId, category){
+  const container = document.getElementById(containerId);
 
-products.forEach(p => {
-  grid.innerHTML += `
-    <div class="card">
-      <img src="${p.img}" onclick="openLightbox(this)">
-      <div class="desc">${isIT ? p.desc_it : p.desc_en}</div>
-      <div class="customize" onclick="wa('${p.id}','${p.img}')">
-        ${text.customize}
-      </div>
-    </div>
-  `;
-});
+  products
+    .filter(p => p.category === category)
+    .forEach(p => {
+      container.innerHTML += `
+        <div class="card">
+          <img src="${p.img}" onclick="openLightbox(this)">
+          <div class="desc">${isIT ? p.desc_it : p.desc_en}</div>
+          <div class="customize" onclick="wa('${p.id}','${p.img}')">
+            ${text.customize}
+          </div>
+        </div>
+      `;
+    });
+}
 
 /* LIGHTBOX */
 const lightbox = document.getElementById("lightbox");
@@ -226,8 +254,13 @@ function openLightbox(img){
 
 lightbox.onclick = () => lightbox.style.display = "none";
 
+/* INIT */
+renderCategory("birthdays", "birthdays");
+renderCategory("religious", "religious");
+
 /* SHOW */
 document.body.style.visibility = "visible";
+
 </script>
 
 </body>
