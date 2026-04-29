@@ -18,17 +18,17 @@
     background: #345A46;
     color: white;
     position: relative;
-    height: 100px; /* desktop */
+    height: 100px;
     padding: 15px;
-    overflow: hidden; /* evita che il logo esca */
+    overflow: hidden;
   }
 
   .logo {
     position: absolute;
     top: 1px;
     right: 1px;
-    width: 200px; /* più controllato */
-    max-width: 40%; /* evita overflow */
+    width: 200px;
+    max-width: 40%;
     height: auto;
   }
 
@@ -99,12 +99,18 @@
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
+    width: 220px;
+  }
+
+  /* bottone email */
+  .cta a:last-child {
+    background: #3b82f6;
   }
 
   /* 📱 MOBILE */
   @media (max-width: 500px) {
     header {
-      height: 100px; /* più basso */
+      height: 100px;
       padding: 10px;
     }
 
@@ -191,6 +197,8 @@
 
 <div class="cta">
   <a href="https://wa.me/39TUONUMEROQUI" target="_blank" id="cta"></a>
+  <br><br>
+  <a href="mailto:tuaemail@esempio.com" id="ctaMail"></a>
 </div>
 
 <script>
@@ -203,7 +211,8 @@ const t = {
     c2: "Sacramenti",
     c3: "Altre occasioni",
     c4: "Non hai trovato quello che cerchi? Scrivimi e te ne preparo uno su misura!",
-    cta: "Scrivimi su WhatsApp!"
+    cta: "Scrivimi su WhatsApp!",
+    ctaMail: "Scrivimi via Email!"
   },
   en: {
     title: "SadPro Studio - Custom quality cards for any occasion!",
@@ -213,7 +222,8 @@ const t = {
     c2: "Religious Functions",
     c3: "Other occasions",
     c4: "Haven't found what you're looking for? Message me and I'll make one from scratch according to your needs!",
-    cta: "Message me on WhatsApp!"
+    cta: "Message me on WhatsApp!",
+    ctaMail: "Send me an Email!"
   }
 };
 
@@ -232,6 +242,7 @@ document.getElementById("c2").innerText = text.c2;
 document.getElementById("c3").innerText = text.c3;
 document.getElementById("c4").innerText = text.c4;
 document.getElementById("cta").innerText = text.cta;
+document.getElementById("ctaMail").innerText = text.ctaMail;
 
 // mostra pagina solo dopo traduzione
 document.body.style.visibility = "visible";
